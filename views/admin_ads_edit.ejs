@@ -4,7 +4,10 @@
 
         <section class="admin_content">
             <form action="/admin/ads/edit/<%= result.id %>" method="POST" enctype="multipart/form-data" class="admin_form_create_update" novalidate>
+
                 <legend>Rediger en Announce</legend>
+                <small class="error_message"><%= (typeof errorMessage != 'undefined') ? errorMessage : '' %></small>
+                
                 <label for="title">Titel: </label>
                 <input type="text" name="title" id="title" value="<%= result.title %>" required>
     
@@ -35,7 +38,6 @@
 
             </form>
 
-            <p class="error_message"></p>
         </section>
 
     <% }); %>

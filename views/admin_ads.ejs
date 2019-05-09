@@ -3,24 +3,29 @@
     <section class="admin_content">
         <h1>Admin Panel | Announcer</h1>
         <form action="/admin/ads/create" method="post" enctype="multipart/form-data" class="admin_form_create_update" novalidate>
+            
+            
+
             <legend>Opret en Announce</legend>
+
+            <small class="error_message"><%= (typeof errorMessage != 'undefined') ? errorMessage : '' %></small>
+            
             <label for="title">Titel</label>
-            <input type="text" name="title" id="title" value="<%= (typeof name != 'undefined') ? name : '' %>" placeholder="Skriv navn til produktet...." required>
+            <input type="text" name="title" id="title" value="<%= (typeof title != 'undefined') ? title : '' %>" placeholder="Skriv Titel til Announcen...." required>
 
             <label for="description">Beskrivelse</label>
-            <textarea name="description" id="description" cols="30" rows="10" placeholder="Skriv Beskrivelse til produktet...." required><%= (typeof description != 'undefined') ? description : '' %></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" placeholder="Skriv Beskrivelse til Announcen...." required><%= (typeof description != 'undefined') ? description : '' %></textarea>
 
             <label for="photo">Billede</label>
             <input type="file" name="photo" id="photo" required>
 
             <label for="photo_alt">Billede Beskrivelse</label>
-            <input type="text"  name="photo_alt" id="photo_alt" value="<%= (typeof photo_alt != 'undefined') ? photo_alt : '' %>" required>
+            <input type="text"  name="photo_alt" id="photo_alt" value="<%= (typeof photo_alt != 'undefined') ? photo_alt : '' %>"  placeholder="Skriv Billede Beskrivelse til Billedet...." required>
 
             <label for="price">Pris</label>
-            <input type="number" name="price" id="price" value="<%= (typeof price != 'undefined') ? price : '' %>"  placeholder="Skriv Pris til produktet...." required>
+            <input type="number" name="price" id="price" value="<%= (typeof price != 'undefined') ? price : '' %>"  placeholder="Skriv Pris til Announcen...." required>
 
             <button type="submit">+ Opret</button>
-            <p class="error_message"><%= (typeof errorMessage != 'undefined') ? errorMessage : '' %></p>
         </form>
 
         

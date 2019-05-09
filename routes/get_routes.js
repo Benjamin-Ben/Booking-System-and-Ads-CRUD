@@ -174,7 +174,7 @@ module.exports = function (app) {
 
     // Main
     readRoutes.benNormalGet(
-        '/admin/ads', 'error_page', 'admin_ads', 'Admin Announcer', 
+        '/admin/ads', 'error_page', 'admin_ads', '', 
         `SELECT office_ads.id, office_ads.title, office_ads.description, office_ads.price FROM office_ads ORDER BY office_ads.id DESC`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
@@ -185,7 +185,7 @@ module.exports = function (app) {
 
     // Edit
     readRoutes.benParamsGet(
-        '/admin/ads/edit/:id', 'error_page', 'admin_ads_edit', 'Admin Announcer', 
+        '/admin/ads/edit/:id', 'error_page', 'admin_ads_edit', '', 
         `SELECT * FROM office_ads WHERE office_ads.id = ?`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,

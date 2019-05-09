@@ -50,6 +50,41 @@ module.exports = function (app) {
 
     // ----------- Update Ad ----------- //
 
+    app.post('/admin/ads/edit/:id', (req, res, next) => {
+        let success = true;
+        let errorMessage;
     
+        if( !req.fields.title || !req.fields.description || !req.fields.price ) {
+            success = false;
+            errorMessage = 'Et eller flere felter var tomme';
+        }
     
+        if( success === true ) {
+            
+            db.query(`UPDATE office_ads 
+            SET title = ?, description = ?, price = ? WHERE office_ads.id = ?`, 
+            [ req.fields.title, req.fields.description, req.fields.price, req.params.id ], ( err, result ) => {
+                if (err) {
+                    res.render('error_page'); 
+                    console.error(err);
+                }
+                res.redirect('/admin/ads');
+            });
+        
+        } else {
+            db.query( `SELECT * FROM office_ads 
+            WHERE office_ads.id = ?;`, [ req.params.id ], ( err, results1 ) => {
+                if (err) {
+                    res.render('error_page'); 
+                    console.error(err);
+                }
+    
+                res.render( 'admin_ads_edit', { results1, errorMessage, ...req.fields } );
+    
+            });
+                
+        }
+    });
+
 }
+    
