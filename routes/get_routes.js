@@ -148,12 +148,22 @@ module.exports = function (app) {
     // ======================= HOME ======================= //
     readRoutes.benNormalGet(
         '/', 'error_page', 'home', 'Hjem', 
-        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices`,
         `SELECT * FROM offices WHERE offices.id = 0`,
         `SELECT * FROM offices WHERE offices.id = 0`,
         `SELECT * FROM offices WHERE offices.id = 0`,
         `SELECT * FROM offices WHERE offices.id = 0`,
         `SELECT * FROM offices WHERE offices.id = 0`
     );
+
+    readRoutes.benParamsGet(
+        '/single-office/:id', 'error_page', 'single_office', 'Enkelt Kontor', 
+        `SELECT * FROM offices WHERE offices.id = ?`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`
+    )
             
 } // End of 'Module.Exports'

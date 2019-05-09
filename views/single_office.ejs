@@ -3,14 +3,19 @@
     
     <% results1.forEach(result => { %>
         <section>
-            <a href="/single-office/<%= result.id %>"><img src="/img/<%= result.img_src %>" alt="<%= result.img_alt %>" width="300" height="300"></a> 
-            <h2><a href="/single-office/<%= result.id %>"><%= result.title %></a></h2>
+            <img src="/img/<%= result.img_src %>" alt="<%= result.img_alt %>" width="300" height="300">
+            <h2><%= result.title %></h2>
             <p><%= result.description %></p>
             <p><%= result.price %>Kr</p>    
             
             <p>
                 <% if( result.booked_true_or_false === 0 ) { %>
                     Ledig
+
+                    <form action="/book-office/<%= result.id %>" method="post">
+                        <button type="submit">Book Kontor</button>
+                    </form>
+
                 <% } else { %>
                     Ikke ledig
                 <% } %>
