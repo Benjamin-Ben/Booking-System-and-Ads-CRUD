@@ -3,8 +3,9 @@ const fs = require('fs');
 
 module.exports = function (app) {
     
-    // -----------------------------------------------  Ads
+    // -----------------------------------------------  Ads ----------------------------------------------- //
     
+    // ----------- Create Ad ----------- //
     app.post('/admin/ads/create', (req, res, next) => {
 
         let success = true;
@@ -46,5 +47,9 @@ module.exports = function (app) {
                 
         }
     });
+
+    // ----------- Update Ad ----------- //
+
+    
     
 }

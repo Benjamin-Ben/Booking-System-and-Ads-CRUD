@@ -47,8 +47,8 @@
                         <td><%= result.description %></td>
                         <td><%= result.price %>kr</td>
                         <td>
-                            <a class="admin_edit" href="/admin/ads/rediger/<%= result.id %>">Rediger</a>
-                            <a class="admin_delete" href="/admin/ads/slet-tjek/<%= result.id %>">Slet</a>
+                            <a class="admin_edit" href="/admin/ads/edit/<%= result.id %>">Rediger</a>
+                            <a class="admin_delete" href="/admin/ads/delete-check/<%= result.id %>">Slet</a>
                         </td>
                     </tr>
                 <% }); %>
