@@ -146,8 +146,14 @@ module.exports = function (app) {
     }
     
     // ======================= HOME ======================= //
-    readRoutes.benNoSqlGet(
-        '/', 'home', 'Home Page'
+    readRoutes.benNormalGet(
+        '/', 'error_page', 'home', 'Hjem', 
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`,
+        `SELECT * FROM offices WHERE offices.id = 0`
     );
             
 } // End of 'Module.Exports'
