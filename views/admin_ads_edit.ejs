@@ -1,0 +1,101 @@
+<% include ./parts/admin_header %>
+        <section class="admin_content">
+            <form action="/admin/produkter/rediger/<%= result.id %>" enctype="multipart/form-data" class="admin_form_create_update">
+                <legend>Rediger et produkt</legend>
+                <label for="name">Navn: </label>
+                <input type="text" name="name" id="name" value="<%= result.name %>" required>
+    
+                <label for="description">Beskrivelse: </label>
+                <textarea name="description" id="description" cols="30" rows="10" required><%= result.description %></textarea>
+    
+                <label for="category">Kategori: </label>
+                <select name="category" id="category" required>
+                    <% results2.forEach(result2 => { %>
+                        <option value="<%= result2.id %>" <%= ( result.fk_category == result2.id ? 'selected' : '' ) %>><%= result2.category %></option>
+                    <% }); %>
+                </select>
+    
+                <label for="price">Pris: </label>
+                <input type="number" step="0.01" name="price" id="price" value="<%= result.price %>" required>
+                
+                <button type="submit">Rediger</button>
+
+                <br><br><br>
+                <label for=""></label>
+                <input type="file" name="photo" id="" class="profileFileSelect">
+                <p>ADVARSEL!!! <br> Hvis du uploader et nyt billede, så vil den blive opdateret med det samme.</p>
+                
+                
+            </form>
+
+            <p class="error_message"></p>
+        </section>
+
+            <script>
+                    //Getting the full url
+                    const url = new URL(window.location);
+        
+                    //Replaces the url's pathname with nothing, so I can get the id
+                    const urlString = url.pathname.replace('/admin/produkter/rediger/', '');
+        
+                    const form = document.querySelector('form');
+                    form.addEventListener('submit', function (event) {
+                        event.preventDefault();
+        
+                        fetch(`/admin/produkter/rediger/${urlString}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: this.name.value,
+                                description: this.description.value,
+                                category: this.category.value,
+                                price: this.price.value
+                            })
+                        })
+                            .then(response => {
+                                if (response.status === 204) {
+                                    return response.json();
+                                }
+
+                                if (response.status === 405) {
+                                    document.querySelector('.error_message').innerHTML = 'Et eller flere felter var tomme';                                    
+                                    return;
+                                }
+
+                                if (response.status === 202) {
+                                    location.assign('/admin/produkter');
+                                }
+
+                            });
+
+                    });
+
+                    const file = document.querySelector('.profileFileSelect');
+                            file.addEventListener('change', function (event) {
+                                const formData = new FormData();
+                                formData.append('photo', this.files[0]);
+                                fetch(`/admin/produkter/rediger/image/${urlString}`, {
+                                    method: 'PATCH',
+                                    body: formData
+                                })
+                                    .then(response => {
+                                        if (response.status === 200) return response.json();
+
+
+                                        if( response.status === 405 ) {
+                                            document.querySelector('.error_message').innerHTML = 'Du kan kun uploade billede filler';
+                                            return;
+                                        }
+
+
+                                        if ( response.status === 202 ) {
+                                            document.querySelector('.error_message').innerHTML = 'Dit billede er blevet uploadet!';
+                                            return;
+                                        }
+                                    })
+                            });
+            </script>
+
+<% include ./parts/admin_footer %>

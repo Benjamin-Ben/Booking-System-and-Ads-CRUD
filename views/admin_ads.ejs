@@ -1,0 +1,59 @@
+<% include ./parts/admin_header %>
+
+    <section class="admin_content">
+        <h1>Admin Panel | Announcer</h1>
+        <form action="/admin/ads/create" method="post" enctype="multipart/form-data" class="admin_form_create_update" novalidate>
+            <legend>Opret en Announce</legend>
+            <label for="title">Titel</label>
+            <input type="text" name="title" id="title" value="<%= (typeof name != 'undefined') ? name : '' %>" placeholder="Skriv navn til produktet...." required>
+
+            <label for="description">Beskrivelse</label>
+            <textarea name="description" id="description" cols="30" rows="10" placeholder="Skriv Beskrivelse til produktet...." required><%= (typeof description != 'undefined') ? description : '' %></textarea>
+
+            <label for="photo">Billede</label>
+            <input type="file" name="photo" id="photo" required>
+
+            <label for="photo_alt">Billede Beskrivelse</label>
+            <input type="text"  name="photo_alt" id="photo_alt" value="<%= (typeof photo_alt != 'undefined') ? photo_alt : '' %>" required>
+
+            <label for="price">Pris</label>
+            <input type="number" name="price" id="price" value="<%= (typeof price != 'undefined') ? price : '' %>"  placeholder="Skriv Pris til produktet...." required>
+
+            <button type="submit">+ Opret</button>
+            <p class="error_message"><%= (typeof errorMessage != 'undefined') ? errorMessage : '' %></p>
+        </form>
+
+        
+
+        <table class="admin_read_data_table">
+            <thead>   
+                <tr>
+                    <th>Titel</th>
+                    <th>Beskrivelse</th>
+                    <th>Pris</th>
+                    <th>
+                        <!--<form action="/admin/produkter/soeg" method="get" class="admin_form_create_update">
+                            <label for="search_data">Søg for Produkter: </label>
+                            <input type="search" name="search_data" id="search_data" placeholder="Søg....">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>-->
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% results1.forEach(result => { %>
+                    <tr>
+                        <td><%= result.title %></td>
+                        <td><%= result.description %></td>
+                        <td><%= result.price %>kr</td>
+                        <td>
+                            <a class="admin_edit" href="/admin/ads/rediger/<%= result.id %>">Rediger</a>
+                            <a class="admin_delete" href="/admin/ads/slet-tjek/<%= result.id %>">Slet</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </section>
+
+<% include ./parts/admin_footer %>

@@ -145,21 +145,42 @@ module.exports = function (app) {
 
     }
     
+
     // ======================= HOME ======================= //
     readRoutes.benNoSqlGet(
         '/', 'home', 'Hjem'
     )
 
 
+    // ======================= ADS ======================= //
     readRoutes.benNormalGet(
         '/ads', 'error_page', 'ads', 'Announcer', 
-        `SELECT * FROM office_ads`,
+        `SELECT * FROM office_ads ORDER BY office_ads.id DESC`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`
     );
+
+
+    // ======================= Admin Home ======================= //
+    readRoutes.benNoSqlGet(
+        '/admin', 'admin_home', 'Admin Panel'
+    );
+
+
+    // ======================= Admin Ads ======================= //
+    readRoutes.benNormalGet(
+        '/admin/ads', 'error_page', 'admin_ads', 'Admin Announcer', 
+        `SELECT office_ads.id, office_ads.title, office_ads.description, office_ads.price FROM office_ads ORDER BY office_ads.id DESC`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
+    );
+
 
             
 } // End of 'Module.Exports'
