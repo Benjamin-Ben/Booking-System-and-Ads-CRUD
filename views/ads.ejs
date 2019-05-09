@@ -11,11 +11,6 @@
             <p>
                 <% if( result.booked_true_or_false === 0 ) { %>
                     Ledig
-
-                    <form action="/book-office/<%= result.id %>" method="post">
-                        <button type="submit">Book Kontor</button>
-                    </form>
-
                 <% } else { %>
                     Ikke ledig
                 <% } %>

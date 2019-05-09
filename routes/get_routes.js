@@ -146,24 +146,20 @@ module.exports = function (app) {
     }
     
     // ======================= HOME ======================= //
+    readRoutes.benNoSqlGet(
+        '/', 'home', 'Hjem'
+    )
+
+
     readRoutes.benNormalGet(
-        '/', 'error_page', 'home', 'Hjem', 
-        `SELECT * FROM offices`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`
+        '/ads', 'error_page', 'ads', 'Announcer', 
+        `SELECT * FROM office_ads`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
     );
 
-    readRoutes.benParamsGet(
-        '/single-office/:id', 'error_page', 'single_office', 'Enkelt Kontor', 
-        `SELECT * FROM offices WHERE offices.id = ?`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`,
-        `SELECT * FROM offices WHERE offices.id = 0`
-    )
             
 } // End of 'Module.Exports'
