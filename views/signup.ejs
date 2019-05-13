@@ -1,5 +1,5 @@
 <% include ./parts/header %>
-    <form action="/opret-bruger" method="post">
+    <form action="/signup" method="post" novalidate>
 
         <label for="email">E-mail: </label><br>
         <input type="email" name="email" id="email" value="<%= (typeof email != 'undefined') ? email : '' %>" required>
@@ -16,13 +16,15 @@
 
         <br><br>
 
-        <label for="passwordAgain">Gentag Kodeord: </label><br>
-        <input type="password" name="passwordAgain" id="passwordAgain" required>
+        <label for="repeat_password">Gentag Kodeord: </label><br>
+        <input type="password" name="repeat_password" id="repeat_password" required>
 
         <br><br>
 
         <button type="submit">Opret bruger</button>
+        
+        <br>
 
+        <small style="color:red; font-weight: bolder;"><%= ( typeof errorMessage != 'undefined' ) ? errorMessage : '' %></small>
     </form>
-    <p><%= ( typeof errorMessage != 'undefined' ) ? errorMessage : '' %></p>
 <% include ./parts/footer %>
