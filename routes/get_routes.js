@@ -172,6 +172,31 @@ module.exports = function (app) {
     readRoutes.benNoSqlGet('/signup', 'signup', 'Opret Bruger');
 
 
+    // ADMIN =============================================================================================== ====================================================================================================================================================================================================================================================================================================
+
+
+    app.use('/admin', (req, res, next) => {
+        
+        if ( !req.session.userId || req.session.userRole !== 1 || req.session.userId === undefined || req.session.userId === null ) {
+            
+            if ( !req.session.userId || req.session.userId === undefined || req.session.userId === null ) {
+                
+                res.redirect('/login');
+                return;
+
+            } else {
+
+                res.redirect('/');
+                return;
+
+            }
+
+        } else {
+            next();
+        } 
+
+    });
+
     // ======================= Admin Home ======================= //
     readRoutes.benNoSqlGet(
         '/admin', 'admin_home', 'Admin Panel'

@@ -1,5 +1,5 @@
 <% include ./parts/header %>
-    <form action="/create-user" method="post" novalidate>
+    <form action="/signup" method="post" novalidate>
 
         <label for="email">E-mail: </label><br>
         <input type="email" name="email" id="email" value="<%= (typeof email != 'undefined') ? email : '' %>" required>
