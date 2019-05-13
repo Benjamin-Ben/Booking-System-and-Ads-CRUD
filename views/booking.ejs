@@ -7,17 +7,17 @@
             <form action="/booking" method="POST">
                 
                 <label for="book_office">Vælg Kontor:</label>
-                <select name="book_office" id="book_office">
+                <select name="book_office" id="book_office" required>
                     <% results1.forEach(result => { %>
                         <option value="<%= result.id %>"><%= result.title %> | <%= result.price %>Kr</option>
                     <% }); %>
                 </select>
 
                 <label for="booked_date">Bruges fra:</label>
-                <input type="date" name="booked_date" id="booked_date">
+                <input type="date" name="booked_date" id="booked_date" required>
 
                 <label for="unbooked_date">til:</label>
-                <input type="date" name="unbooked_date" id="unbooked_date">
+                <input type="date" name="unbooked_date" id="unbooked_date" required>
 
                 <button type="submit">Book</button>
             </form>
