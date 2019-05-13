@@ -3,7 +3,7 @@ const fs = require('fs');
 
 module.exports = function (app) {
     
-    // -----------------------------------------------  Ads ----------------------------------------------- //
+    // Ads -----------------------------------------------------------------------
     
     // ----------- Create Ad ----------- //
     app.post('/admin/ads/create', (req, res, next) => {
@@ -108,19 +108,25 @@ module.exports = function (app) {
             const renammedFile = `${Date.now()}_${image.name}`;
         
             fs.readFile(image.path, (err, data) => {
-                if (err) throw (err);
+                if (err) { 
+                    res.render('error_page', { err }); 
+                }
                 fs.writeFile(`./public/img/${renammedFile}`, data, err => {
-                    if (err) throw (err);
+                    if (err) { 
+                        res.render('error_page', { err }); 
+                    }
 
                     fs.unlink( `./public/img/${[req.params.imgName]}`, (err, imgResults) => {
                         if (err) { 
-                            res.render(viewTemplateError, { err }); 
+                            res.render('error_page', { err }); 
                         }
                     });
 
                     db.query(`UPDATE office_ads 
                     SET img_src = ?, img_alt = ? WHERE office_ads.img_src = ?;`, [ renammedFile, req.fields.photo_alt, req.params.imgName ], (err, result) => {
-                        if (err) throw (err);
+                        if (err) { 
+                            res.render('error_page', { err }); 
+                        }
                         res.redirect( '/admin/ads' );
                     });
                 });
@@ -141,16 +147,30 @@ module.exports = function (app) {
     app.post('/admin/ads/delete/:imgName', (req, res, next) => {
         fs.unlink( `./public/img/${[req.params.imgName]}`, (err, imgResults) => {
             if (err) { 
-                res.render(viewTemplateError, { err }); 
+                res.render('error_page', { err }); 
             }
             db.query(`DELETE FROM office_ads WHERE office_ads.img_src = ?`, [ req.params.imgName ], (err, result) => {
                 if (err) { 
-                    res.render(viewTemplateError, { err }); 
+                    res.render('error_page', { err }); 
                 }
 
                 res.redirect('/admin/ads');
             });
         });
+    });
+
+
+    // Booking -----------------------------------------------------------------------
+    app.post('/booking', (req, res, next) => {
+        db.query(`UPDATE office_ads SET office_ads.booked_true_or_false = 1 WHERE office_ads.id = ?`, [ req.fields.book_office ], (err, result) => {
+            if (err) { 
+                res.render('error_page', { err }); 
+            }
+            db.query(`INSERT INTO booked_offices (fk_user, fk_office, booked_date, unbooked_date)
+            VALUES (?, ?, ?, ?);`, [ req.session.userId, req.fields.book_office, req.fields.booked_date, req.fields.unbooked_date ], (err, result) => {
+                res.render('booking_success');
+            });
+        })
     });
 
 }
