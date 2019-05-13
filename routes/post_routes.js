@@ -135,5 +135,21 @@ module.exports = function (app) {
         }
     });
 
+
+    app.post('/admin/ads/delete/:imgName', (req, res, next) => {
+        fs.unlink( `./public/img/${[req.params.imgName]}`, (err, imgResults) => {
+            if (err) { 
+                res.render(viewTemplateError, { err }); 
+            }
+            db.query(`DELETE FROM office_ads WHERE office_ads.img_src = ?`, [ req.params.imgName ], (err, result) => {
+                if (err) { 
+                    res.render(viewTemplateError, { err }); 
+                }
+
+                res.redirect('/admin/ads');
+            });
+        });
+    });
+
 }
     

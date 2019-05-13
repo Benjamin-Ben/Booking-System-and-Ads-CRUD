@@ -194,6 +194,18 @@ module.exports = function (app) {
         `SELECT * FROM office_ads WHERE office_ads.id = 0`
     );
 
+    // Delete 
+    readRoutes.benParamsGet(
+        '/admin/ads/delete-check/:id', 'error_page', 'admin_ads_delete', '', 
+        `SELECT office_ads.title, office_ads.img_src
+        FROM office_ads
+        WHERE office_ads.id = ?`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
+    );
 
             
 } // End of 'Module.Exports'

@@ -1,34 +1,14 @@
 <% include ./parts/admin_header %>
+        
+    <% results1.forEach(result => { %>
         <section class="admin_content">
-            <form action="/admin/produkter/slet/<%= result.id %>" class="admin_delete_single_page_form">
-                <legend>Er du sikker på at du vil slette <span class="admin_delete_row_check_name">[ <%= result.name %> ]</span> ?</legend>
-    
-                <a href="/admin/produkter">Nej</a> 
+            <form action="/admin/ads/delete/<%= result.img_src %>" method="POST" class="admin_delete_single_page_form" >
+                <legend>Er du sikker på at du vil slette <span class="admin_delete_row_check_name">[ <%= result.title %> ]</span> ?</legend>
+        
+                <a href="/admin/ads">Nej</a> 
                 <button type="submit">Ja</button>
             </form>
         </section>
-
-            <script>
-                //Getting the full url
-                const url = new URL(window.location);
-    
-                //Replaces the url's pathname with nothing, so I can get the id
-                const urlString = url.pathname.replace('/admin/produkter/slet-tjek/', '');
-    
-                const form = document.querySelector('form');
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
-    
-                    fetch(`/admin/produkter/slet/${urlString}`, {
-                        method: 'DELETE'
-                    }).then(response => {
-                            if (response.status === 204) {
-                                return response.json();
-                            }
-                        }).then(data => {
-                            location.assign('/admin/produkter');
-                        });
-                });
-            </script>
+   <% }); %>
 
 <% include ./parts/admin_footer %>
