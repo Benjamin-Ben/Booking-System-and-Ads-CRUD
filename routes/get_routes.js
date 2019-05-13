@@ -146,13 +146,13 @@ module.exports = function (app) {
     }
     
 
-    // ======================= HOME ======================= //
+    // HOME ======================================================================
     readRoutes.benNoSqlGet(
         '/', 'home', 'Hjem'
     )
 
 
-    // ======================= ADS ======================= //
+    // ADS ======================================================================
     readRoutes.benNormalGet(
         '/ads', 'error_page', 'ads', 'Announcer', 
         `SELECT * FROM office_ads ORDER BY office_ads.id DESC`,
@@ -163,12 +163,25 @@ module.exports = function (app) {
         `SELECT * FROM office_ads WHERE office_ads.id = 0`
     );
 
+    // Booking ======================================================================
+    readRoutes.benNormalGet(
+        '/booking', 'error_page', 'booking', 'Book Kontor',
+        `SELECT office_ads.id, office_ads.title, office_ads.price
+        FROM office_ads 
+        WHERE office_ads.booked_true_or_false = 0
+        ORDER BY office_ads.id DESC;`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
+    )
 
-    // ======================= Login ======================= //
+    // Login ======================================================================
     readRoutes.benNoSqlGet('/login', 'login', 'Log Ind');
 
 
-    // ======================= Signup ======================= //
+    // Signup ======================================================================
     readRoutes.benNoSqlGet('/signup', 'signup', 'Opret Bruger');
 
 
