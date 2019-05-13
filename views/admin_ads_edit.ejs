@@ -1,0 +1,47 @@
+<% include ./parts/admin_header %>
+        
+    <% results1.forEach(result => { %>
+
+        <section class="admin_content">
+            <form action="/admin/ads/edit/<%= result.id %>" method="POST" enctype="multipart/form-data" class="admin_form_create_update" novalidate>
+
+                <legend>Rediger en Announce</legend>
+                <small class="error_message"><%= (typeof errorMessage1 != 'undefined') ? errorMessage1 : '' %></small>
+
+                <label for="title">Titel: </label>
+                <input type="text" name="title" id="title" value="<%= result.title %>" required>
+    
+                <label for="description">Beskrivelse: </label>
+                <textarea name="description" id="description" cols="30" rows="10" required><%= result.description %></textarea>
+    
+    
+                <label for="price">Pris: </label>
+                <input type="number" step="0.01" name="price" id="price" value="<%= result.price %>" required>
+                
+                <button type="submit">Rediger</button>            
+                
+            </form>
+
+            
+
+            <form action="/admin/ads/edit-img/<%= result.img_src %>" method="post" enctype="multipart/form-data" class="admin_form_create_update" novalidate>
+                
+                <legend>Rediger Billede for Announce</legend>
+                <small class="error_message"><%= (typeof errorMessage2 != 'undefined') ? errorMessage2 : '' %></small>
+
+                <label for="photo">Billede: </label>
+                <input type="file" name="photo" id="photo" required>
+
+                <label for="photo_alt">Billede Beskrivelse: </label>
+                <input type="text" name="photo_alt" id="photo_alt" value="<%= result.img_alt %>" required>
+
+                <button type="submit">Rediger Billede</button>
+
+            </form>
+
+        </section>
+
+    <% }); %>
+
+
+<% include ./parts/admin_footer %>

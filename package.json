@@ -1,6 +1,6 @@
 {
-  "name": "ben_nodejs_kodebase",
-  "version": "0.5.0",
+  "name": "booking-system-and-ads-crud",
+  "version": "0.2.0",
   "description": "Benjamins Kodebase for NodeJS projekter",
   "main": "server.js",
   "scripts": {
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Benjamin-Ben/ben_nodejs_kodebase"
+    "url": "https://github.com/Benjamin-Ben/Booking-System-and-Ads-CRUD"
   },
   "author": "Benjamin Bloch Bowden",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Benjamin-Ben/ben_nodejs_kodebase"
+    "url": "https://github.com/Benjamin-Ben/Booking-System-and-Ads-CRUD"
   },
-  "homepage": "https://github.com/Benjamin-Ben/ben_nodejs_kodebase",
+  "homepage": "https://github.com/Benjamin-Ben/Booking-System-and-Ads-CRUD",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.1.0",

@@ -145,9 +145,67 @@ module.exports = function (app) {
 
     }
     
+
     // ======================= HOME ======================= //
     readRoutes.benNoSqlGet(
-        '/', 'home', 'Home Page'
+        '/', 'home', 'Hjem'
+    )
+
+
+    // ======================= ADS ======================= //
+    readRoutes.benNormalGet(
+        '/ads', 'error_page', 'ads', 'Announcer', 
+        `SELECT * FROM office_ads ORDER BY office_ads.id DESC`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
     );
+
+
+    // ======================= Admin Home ======================= //
+    readRoutes.benNoSqlGet(
+        '/admin', 'admin_home', 'Admin Panel'
+    );
+
+
+    // ======================= Admin Ads ======================= //
+
+    // Main
+    readRoutes.benNormalGet(
+        '/admin/ads', 'error_page', 'admin_ads', '', 
+        `SELECT office_ads.id, office_ads.title, office_ads.description, office_ads.price FROM office_ads ORDER BY office_ads.id DESC`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
+    );
+
+    // Edit
+    readRoutes.benParamsGet(
+        '/admin/ads/edit/:id', 'error_page', 'admin_ads_edit', '', 
+        `SELECT * FROM office_ads WHERE office_ads.id = ?`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
+    );
+
+    // Delete 
+    readRoutes.benParamsGet(
+        '/admin/ads/delete-check/:id', 'error_page', 'admin_ads_delete', '', 
+        `SELECT office_ads.title, office_ads.img_src
+        FROM office_ads
+        WHERE office_ads.id = ?`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`,
+        `SELECT * FROM office_ads WHERE office_ads.id = 0`
+    );
+
             
 } // End of 'Module.Exports'

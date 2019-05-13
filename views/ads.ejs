@@ -1,0 +1,23 @@
+<% include ./parts/header %>
+    <h2>Alle Kontorer</h2>
+    
+    <% results1.forEach(result => { %>
+        <section>
+            <img src="/img/<%= result.img_src %>" alt="<%= result.img_alt %>" width="300" height="300">
+            <h2><%= result.title %></h2>
+            <p><%= result.description %></p>
+            <p><%= result.price %>Kr</p>    
+            
+            <p>
+                <% if( result.booked_true_or_false === 0 ) { %>
+                    Ledig
+                <% } else { %>
+                    Ikke ledig
+                <% } %>
+            </p>
+
+            <hr>
+        </section>
+    <% }); %>
+
+<% include ./parts/footer %>

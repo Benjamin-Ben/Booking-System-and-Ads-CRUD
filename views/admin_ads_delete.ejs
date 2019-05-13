@@ -1,0 +1,14 @@
+<% include ./parts/admin_header %>
+        
+    <% results1.forEach(result => { %>
+        <section class="admin_content">
+            <form action="/admin/ads/delete/<%= result.img_src %>" method="POST" class="admin_delete_single_page_form" >
+                <legend>Er du sikker på at du vil slette <span class="admin_delete_row_check_name">[ <%= result.title %> ]</span> ?</legend>
+        
+                <a href="/admin/ads">Nej</a> 
+                <button type="submit">Ja</button>
+            </form>
+        </section>
+   <% }); %>
+
+<% include ./parts/admin_footer %>
