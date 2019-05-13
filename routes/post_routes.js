@@ -87,6 +87,7 @@ module.exports = function (app) {
         }
     });
 
+    // Update Image
     app.post('/admin/ads/edit-img/:imgName', (req, res, next) => {
 
         let success = true;
@@ -135,6 +136,7 @@ module.exports = function (app) {
         }
     });
 
+    // ----------- Delete Ad ----------- //
 
     app.post('/admin/ads/delete/:imgName', (req, res, next) => {
         fs.unlink( `./public/img/${[req.params.imgName]}`, (err, imgResults) => {

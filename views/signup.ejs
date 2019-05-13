@@ -1,5 +1,5 @@
 <% include ./parts/header %>
-    <form action="/opret-bruger" method="post">
+    <form action="/create-user" method="post" novalidate>
 
         <label for="email">E-mail: </label><br>
         <input type="email" name="email" id="email" value="<%= (typeof email != 'undefined') ? email : '' %>" required>
@@ -23,6 +23,6 @@
 
         <button type="submit">Opret bruger</button>
 
+        <small><%= ( typeof errorMessage != 'undefined' ) ? errorMessage : '' %></small>
     </form>
-    <p><%= ( typeof errorMessage != 'undefined' ) ? errorMessage : '' %></p>
 <% include ./parts/footer %>

@@ -21,7 +21,12 @@
                 </ul>
             </nav>
 
-            <a href="/login" class="login_logout">Log ind</a>
+            <% if (login === false ) { %>
+                <a href="/login" class="login_links">Log ind</a>
+                <a href="/signup" class="login_links">Opret Bruger</a>
+            <% } else { %>
+                <a href="/logout" class="login_links">Log ud</a>
+            <% } %>
 
         </header>
         <main>

@@ -1,5 +1,5 @@
 <% include ./parts/header %>
-    <form action="/logind" method="post">
+    <form action="/login" method="post" novalidate>
 
         <label for="username">Brugernavn: </label><br>
         <input type="text" name="username" id="username" value="<%= (typeof username != 'undefined') ? username : '' %>" required>

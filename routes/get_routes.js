@@ -164,6 +164,14 @@ module.exports = function (app) {
     );
 
 
+    // ======================= Login ======================= //
+    readRoutes.benNoSqlGet('/login', 'login', 'Log Ind');
+
+
+    // ======================= Signup ======================= //
+    readRoutes.benNoSqlGet('/signup', 'signup', 'Opret Bruger');
+
+
     // ======================= Admin Home ======================= //
     readRoutes.benNoSqlGet(
         '/admin', 'admin_home', 'Admin Panel'
