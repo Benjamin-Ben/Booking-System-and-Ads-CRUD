@@ -96,7 +96,7 @@ module.exports = function (app) {
 
 
     // ===================== Sign out ===================== //
-    app.get('/logud', (req, res, next) => {
+    app.get('/logout', (req, res, next) => {
         
         req.session.userId                  = 	null;
         req.session.username 				= 	null;
@@ -107,7 +107,7 @@ module.exports = function (app) {
         app.locals.showUsername 			= 	null;
         app.locals.showEmail                =   null;
 				
-        app.locals.login 				    = 	true;
+        app.locals.login 				    = 	false;
         
         res.redirect('/');
 

@@ -16,13 +16,15 @@
 
         <br><br>
 
-        <label for="passwordAgain">Gentag Kodeord: </label><br>
-        <input type="password" name="passwordAgain" id="passwordAgain" required>
+        <label for="repeat_password">Gentag Kodeord: </label><br>
+        <input type="password" name="repeat_password" id="repeat_password" required>
 
         <br><br>
 
         <button type="submit">Opret bruger</button>
+        
+        <br>
 
-        <small><%= ( typeof errorMessage != 'undefined' ) ? errorMessage : '' %></small>
+        <small style="color:red; font-weight: bolder;"><%= ( typeof errorMessage != 'undefined' ) ? errorMessage : '' %></small>
     </form>
 <% include ./parts/footer %>
