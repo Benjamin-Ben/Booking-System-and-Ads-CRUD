@@ -190,7 +190,7 @@ module.exports = function (app) {
             FROM office_ads 
             WHERE office_ads.booked_true_or_false = 0
             ORDER BY office_ads.id DESC;`, (err, results1) => {
-                res.render('booking', results1, errorMessage, ...req.fields);
+                res.render('booking', { results1, errorMessage, ...req.fields });
             });
         }
 
