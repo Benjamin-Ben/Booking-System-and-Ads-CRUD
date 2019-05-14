@@ -162,15 +162,38 @@ module.exports = function (app) {
 
     // Booking -----------------------------------------------------------------------
     app.post('/booking', (req, res, next) => {
-        db.query(`UPDATE office_ads SET office_ads.booked_true_or_false = 1 WHERE office_ads.id = ?`, [ req.fields.book_office ], (err, result) => {
-            if (err) { 
-                res.render('error_page', { err }); 
-            }
-            db.query(`INSERT INTO booked_offices (fk_user, fk_office, booked_date, unbooked_date)
-            VALUES (?, ?, ?, ?);`, [ req.session.userId, req.fields.book_office, req.fields.booked_date, req.fields.unbooked_date ], (err, result) => {
-                res.render('booking_success');
+
+        let errorMessage;
+        let success = true;
+
+
+        if ( !req.fields.book_office || !req.fields.booked_date || !req.fields.unbooked_date ) {
+            success = false; 
+            errorMessage = 'Et eller flere felter var tomme';
+        }
+
+
+        if ( success === true ) {
+            
+            db.query(`UPDATE office_ads SET office_ads.booked_true_or_false = 1 WHERE office_ads.id = ?`, [ req.fields.book_office ], (err, result) => {
+                if (err) { 
+                    res.render('error_page', { err }); 
+                }
+                db.query(`INSERT INTO booked_offices (fk_user, fk_office, booked_date, unbooked_date)
+                VALUES (?, ?, ?, ?);`, [ req.session.userId, req.fields.book_office, req.fields.booked_date, req.fields.unbooked_date ], (err, result) => {
+                    res.render('booking_success');
+                });
             });
-        })
+            
+        } else {
+            db.query(`SELECT office_ads.id, office_ads.title, office_ads.price
+            FROM office_ads 
+            WHERE office_ads.booked_true_or_false = 0
+            ORDER BY office_ads.id DESC;`, (err, results1) => {
+                res.render('booking', results1, errorMessage, ...req.fields);
+            });
+        }
+
     });
 
 }
