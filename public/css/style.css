@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+    display: block;
+    width:100%; 
+    height: auto;
+}
+
+.element_hidden {
+    visibility: hidden;
+}
+
+/* ------------------------------ Header ------------------------------ */
+
+header {
+    background-color:#008;
+    color:white;
+    padding:30px;
+}
+
+header a {
+    color:white;
+}
+
+header nav {
+    margin: 2% 0;
+}
+
+header nav ul {
+    width:25%;
+    display: flex;
+}
+
+header nav ul li {
+    flex:1;
+    list-style: none;
+    font-size: 48px;
+    margin: 0 5%;
+}
+
+header nav ul li a {
+    color:white; 
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline!important;
+}
+
+.login_links {
+    margin-right:3%;
+    padding:20px;
+}
+
+/* ------------------------------ MAIN  CONTENT ------------------------------ */
+
+main {
+    width:80%;
+    margin:3% auto 0 auto;
+}
+
+main h1 {
+    font-size:60px;
+    text-align: center;
+    font-family: 'Arial Black', Arial, Helvetica, sans-serif;
+    margin-bottom: 4%;
+}
+
+/* ------------------------------ Home Page ------------------------------ */
+
+#home-page article {
+    width:75%;
+    margin:0 auto;
+}
+
+#home-page article h1 {
+    font-size:30px;
+}
+
+#home-page article h2 {
+    font-size:25px;
+}
+
+#home-page article p {
+    font-size: 20px;
+    padding-bottom: 5%;
+}
+
+#main-image-text-section {
+    display:flex;
+}
+
+#main-image-text-section .img-text-sections {
+    flex:1;
+    margin: 0 4%;
+}
+
+#main-image-text-section .img-text-sections h2 {
+    font-size:30px;
+    margin-bottom: 2%;
+}
+
+#main-image-text-section .img-text-sections ul li {
+    list-style: none;
+    font-size: 24px;
+    margin: 5% 0;
+}
+
+/* ------------------------------ Ads ------------------------------ */
+
+.ads {
+    width:60%; 
+    margin: 4% auto;
+    padding-bottom: 20px;
+    border-bottom: solid black 2px;
+}
+
+
+/* ------------------------------ Contact Page ------------------------------ */
+
+#contact-page #contact {
+    width:46%; 
+    margin:0 auto;
+}
+
+#contact-page #contact h2 {
+    font-size: 48px;
+    margin-bottom: 3%;
+}
+
+#contact-page #contact p {
+    font-size: 24px;
+    line-height: 2em;
+    margin-bottom: 8%;
+}
+
+/* ------------------------------ Footer ------------------------------ */
+
+footer {
+    margin-top: 10%;
+}

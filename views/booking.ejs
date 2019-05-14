@@ -4,22 +4,30 @@
     <% if ( login === true )  { %>
 
         <section>
-            <form action="/booking" method="POST">
+            <form action="/booking" method="POST" novalidate>
+
+                <br><br>
                 
                 <label for="book_office">Vælg Kontor:</label>
                 <select name="book_office" id="book_office" required>
                     <% results1.forEach(result => { %>
                         <option value="<%= result.id %>"><%= result.title %> | <%= result.price %>Kr</option>
                     <% }); %>
-                </select>
+                </select><br>
+
+                <br><br>
 
                 <label for="booked_date">Bruges fra:</label>
-                <input type="date" name="booked_date" id="booked_date" required>
+                <input type="date" name="booked_date" id="booked_date" value="<%= (typeof booked_date != 'undefined') ? booked_date : '' %>" required>
 
                 <label for="unbooked_date">til:</label>
-                <input type="date" name="unbooked_date" id="unbooked_date" required>
+                <input type="date" name="unbooked_date" id="unbooked_date" value="<%= (typeof unbooked_date != 'undefined') ? unbooked_date : '' %>" required>
 
-                <button type="submit">Book</button>
+                <br><br>
+
+                <button type="submit" style="width:10%; padding:10px; font-size:16px;">Book</button><br><br>
+
+                <small style="color:red; font-size:16px;"><%= (typeof errorMessage != 'undefined') ? errorMessage : '' %></small>
             </form>
         </section>
 

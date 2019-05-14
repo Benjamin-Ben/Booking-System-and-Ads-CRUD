@@ -149,7 +149,7 @@ module.exports = function (app) {
     // HOME ======================================================================
     readRoutes.benNoSqlGet(
         '/', 'home', 'Hjem'
-    )
+    );
 
 
     // ADS ======================================================================
@@ -163,6 +163,7 @@ module.exports = function (app) {
         `SELECT * FROM office_ads WHERE office_ads.id = 0`
     );
 
+
     // Booking ======================================================================
     readRoutes.benNormalGet(
         '/booking', 'error_page', 'booking', 'Book Kontor',
@@ -175,7 +176,14 @@ module.exports = function (app) {
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`
-    )
+    );
+
+
+    // Contact ======================================================================
+    readRoutes.benNoSqlGet(
+        '/contact', 'contact', 'Kontakt Os',     
+    );
+
 
     // Login ======================================================================
     readRoutes.benNoSqlGet('/login', 'login', 'Log Ind');

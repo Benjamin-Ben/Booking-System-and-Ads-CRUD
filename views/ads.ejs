@@ -1,8 +1,8 @@
 <% include ./parts/header %>
-    <h2>Alle Kontorer</h2>
+    <h2 style="text-align:center;">Alle Kontorer</h2>
     
     <% results1.forEach(result => { %>
-        <section>
+        <section class="ads">
             <img src="/img/<%= result.img_src %>" alt="<%= result.img_alt %>" width="300" height="300">
             <h2><%= result.title %></h2>
             <p><%= result.description %></p>
@@ -15,8 +15,6 @@
                     Ikke ledig
                 <% } %>
             </p>
-
-            <hr>
         </section>
     <% }); %>
 
