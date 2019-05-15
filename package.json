@@ -1,6 +1,6 @@
 {
   "name": "booking-system-and-ads-crud",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Benjamins Kodebase for NodeJS projekter",
   "main": "server.js",
   "scripts": {

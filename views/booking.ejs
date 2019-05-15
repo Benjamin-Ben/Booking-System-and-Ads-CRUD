@@ -31,6 +31,35 @@
             </form>
         </section>
 
+        <section id="section_for_booked_table_frontend">
+            <h2>Kontorer der er Booket</h2>
+            <table id="booked_table_frontend">
+                <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Dato Booket</th>
+                        <th>Dato ikke Booket længere</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% results2.forEach(result => { %>
+                    
+                    <tr>
+                        <td><%= result.title %></td>
+                        <td>
+                            <% const bookedDate = new Date(result.booked_date); %>
+                            <%= bookedDate.getDate() %>/<%= bookedDate.getMonth() +1 %>/<%= bookedDate.getFullYear()%>
+                        </td>
+                        <td>
+                            <% const unbookedDate = new Date(result.unbooked_date); %>
+                            <%= unbookedDate.getDate() %>/<%= unbookedDate.getMonth() +1 %>/<%= unbookedDate.getFullYear()%>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </section>
+
     <% } else { %>
 
         <p>Du skal være logget ind for at booke et kontor. <a href="/login">Log ind</a></p>
