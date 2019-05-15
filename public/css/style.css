@@ -123,6 +123,34 @@ main h1 {
 }
 
 
+/* ------------------------------ Booking ------------------------------ */
+
+#section_for_booked_table_frontend {
+    margin:5% 0;
+}
+
+#booked_table_frontend {
+    border:solid 2px black;
+    border-collapse: collapse;
+}
+
+#booked_table_frontend th {
+    font-size:20px;
+    padding:15px;
+    text-align: center;
+    border:solid 2px black;
+    border-collapse: collapse;
+}
+
+#booked_table_frontend td {
+    font-size:16px;
+    padding:10px;
+    text-align: center;
+    border:solid 2px black;
+    border-collapse: collapse;
+}
+
+
 /* ------------------------------ Contact Page ------------------------------ */
 
 #contact-page #contact {

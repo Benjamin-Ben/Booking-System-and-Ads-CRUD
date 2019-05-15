@@ -190,7 +190,15 @@ module.exports = function (app) {
             FROM office_ads 
             WHERE office_ads.booked_true_or_false = 0
             ORDER BY office_ads.id DESC;`, (err, results1) => {
-                res.render('booking', { results1, errorMessage, ...req.fields });
+                
+                db.query(`SELECT office_ads.title, booked_offices.booked_date, booked_offices.unbooked_date, office_ads.booked_true_or_false
+                FROM booked_offices 
+                INNER JOIN office_ads ON booked_offices.fk_office = office_ads.id
+                WHERE office_ads.booked_true_or_false = 1;`, (err, results2) => {
+
+                    res.render('booking', { results1, results2, errorMessage, ...req.fields });
+
+                });
             });
         }
 
