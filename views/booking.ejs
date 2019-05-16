@@ -36,6 +36,7 @@
             <table id="booked_table_frontend">
                 <thead>
                     <tr>
+                        <th>Bruger</th>
                         <th>Titel</th>
                         <th>Dato Booket</th>
                         <th>Dato ikke Booket længere</th>
@@ -45,6 +46,7 @@
                     <% results2.forEach(result => { %>
                     
                     <tr>
+                        <td><%= result.username %></td>
                         <td><%= result.title %></td>
                         <td>
                             <% const bookedDate = new Date(result.booked_date); %>

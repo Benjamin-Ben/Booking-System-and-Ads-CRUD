@@ -171,9 +171,10 @@ module.exports = function (app) {
         FROM office_ads 
         WHERE office_ads.booked_true_or_false = 0
         ORDER BY office_ads.id DESC;`,
-        `SELECT office_ads.title, booked_offices.booked_date, booked_offices.unbooked_date, office_ads.booked_true_or_false
+        `SELECT office_ads.title, booked_offices.booked_date, booked_offices.unbooked_date, office_ads.booked_true_or_false, users.username
         FROM booked_offices 
         INNER JOIN office_ads ON booked_offices.fk_office = office_ads.id
+        INNER JOIN users ON booked_offices.fk_user = users.id
         WHERE office_ads.booked_true_or_false = 1
         ORDER BY booked_offices.id DESC;`,
         `SELECT * FROM office_ads WHERE office_ads.id = 0`,
